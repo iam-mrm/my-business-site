@@ -21,6 +21,7 @@
   "buildOutputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": false,
+  "skipBuildCache": false,
   "regions": [
     "iad1"
   ],
@@ -66,7 +67,7 @@
       ]
     },
     {
-      "source": "/(.*\\.(jpg|jpeg|png|gif|webp|svg|woff|woff2|ttf|eot))",
+      "source": "/(.*\\.(jpg|jpeg|png|gif|webp|svg|woff|woff2|ttf|eot|mp4|webm))",
       "headers": [
         {
           "key": "Cache-Control",

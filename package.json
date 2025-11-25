@@ -9,7 +9,10 @@
     "lint": "eslint",
     "type-check": "tsc --noEmit",
     "audit": "npm audit --audit-level=moderate",
-    "security": "npm audit fix && npm update"
+    "security": "npm audit fix && npm update",
+    "deploy:vercel": "vercel --prod",
+    "deploy:preview": "vercel",
+    "test:build": "npm run type-check && npm run build"
   },
   "dependencies": {
     "framer-motion": "^12.23.24",
