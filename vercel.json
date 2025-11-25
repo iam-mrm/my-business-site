@@ -6,58 +6,68 @@
   "nodeVersion": "20.x",
   "env": {
     "NEXT_PUBLIC_SITE_URL": {
-      "description": "Production site URL",
-      "required": true
+      "description": "Production site URL (e.g., https://mrm.dev)",
+      "required": false,
+      "default": "https://mrm.dev"
     },
     "NEXT_PUBLIC_SITE_NAME": {
       "description": "Site name for branding",
-      "default": "Mr.M - Web Developer"
+      "default": "Mr.M - Full-Stack Developer"
     },
     "NEXT_PUBLIC_ENVIRONMENT": {
       "description": "Environment (development/production)",
       "default": "production"
-    },
-    "NEXT_PUBLIC_GA_ID": {
-      "description": "Google Analytics tracking ID (optional)"
-    },
-    "NEXT_PUBLIC_ENABLE_ANALYTICS": {
-      "description": "Enable analytics tracking",
-      "default": "false"
     }
   },
-  "buildOutputDirectory": ".next",
+  "buildOutputDirectory": "out",
   "cleanUrls": true,
   "trailingSlash": false,
   "regions": [
     "iad1"
   ],
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "timeout": 60,
-      "maxDuration": 60
-    }
-  },
-  "redirects": [
-    {
-      "source": "/old-path",
-      "destination": "/new-path",
-      "permanent": true
-    }
-  ],
+  "redirects": [],
   "rewrites": [],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
         }
       ]
     },
     {
-      "source": "/static/(.*)",
+      "source": "/(_next|public)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.(jpg|jpeg|png|gif|webp|svg|woff|woff2|ttf|eot))",
       "headers": [
         {
           "key": "Cache-Control",
