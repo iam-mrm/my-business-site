@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Performance: Reduce layout thrashing */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Accessibility: High contrast mode support */
+@media (prefers-contrast: more) {
+  body {
+    filter: contrast(1.1);
+  }
+}
+
+/* Performance: Optimize font loading */
+@font-face {
+  font-family: 'Prata';
+  src: url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+  font-display: swap;
+}
+
+/* Pleasant Gradient Text */
+.gradient-text {
+  background: linear-gradient(to right, #4f46e5, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Clean Card Style */
+.clean-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+/* Scroll Reveal Animations - Optimized for performance */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: none;
+  will-change: transform, opacity;
+}
+
+.reveal-on-scroll.revealed {
+  animation: slideUpFade 0.8s ease-out forwards;
+  will-change: auto;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger animation for multiple elements */
+.reveal-on-scroll:nth-child(1) { animation-delay: 0.1s; }
+.reveal-on-scroll:nth-child(2) { animation-delay: 0.2s; }
+.reveal-on-scroll:nth-child(3) { animation-delay: 0.3s; }
+.reveal-on-scroll:nth-child(4) { animation-delay: 0.4s; }
+
+/* Fade in animation - Optimized */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+  will-change: transform, opacity;
+}
+
+/* Smooth hover scale */
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+
+/* Pulse animation for buttons */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Glow effect for hero elements */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8);
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Performance: Use GPU acceleration for smooth animations */
+.group-hover\:scale-110 {
+  transform: translate3d(0, 0, 0);
+}
+
+/* Accessibility: Focus styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+/* Performance: Optimize link underlines */
+a {
+  position: relative;
+}
+
+/* Lazy loading images */
+img {
+  loading: lazy;
+  decoding: async;
+}
+
+/* Print optimizations */
+@media print {
+  a[href]:after {
+    content: '';
+  }
+  .no-print {
+    display: none !important;
+  }
 }

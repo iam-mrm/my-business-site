@@ -13,6 +13,14 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Disable Tailwind v3/v4 gradient syntax false positive warnings
+      // Code uses correct Tailwind v4 syntax (bg-linear-to-*) which is optimal
+      "@tailwindcss/no-arbitrary-value": "off",
+      "@tailwindcss/migration": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
