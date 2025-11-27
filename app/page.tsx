@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useRef, useState } from "react";
 
 export default function MrMPortfolio() {
@@ -386,11 +388,11 @@ export default function MrMPortfolio() {
               </h2>
 
               <blockquote className="text-xl font-light mb-8 leading-relaxed italic text-indigo-300 border-l-2 border-indigo-500/30 pl-6">
-                "I don't build websites. I architect digital experiences that respect the user's time and intelligence."
+                &quot;I don&apos;t build websites. I architect digital experiences that respect the user&apos;s time and intelligence.&quot;
               </blockquote>
 
               <p className="text-slate-300 mb-6 leading-relaxed">
-                I'm a full-stack developer obsessed with precision, performance, and purposeful design. My work spans high-performance web applications, dark-mode design systems, and interactive experiences that push boundaries.
+                I&apos;m a full-stack developer obsessed with precision, performance, and purposeful design. My work spans high-performance web applications, dark-mode design systems, and interactive experiences that push boundaries.
               </p>
 
               <p className="text-slate-400 mb-10 leading-relaxed">
@@ -468,7 +470,7 @@ export default function MrMPortfolio() {
           </h2>
 
           <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            I'm always open to discussing new projects, creative ideas, or opportunities. Let's build something extraordinary together.
+            I&apos;m always open to discussing new projects, creative ideas, or opportunities. Let&apos;s build something extraordinary together.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
